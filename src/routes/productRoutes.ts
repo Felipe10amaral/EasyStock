@@ -4,7 +4,7 @@ import { Product } from "../models/Product";
 
 const Routes = Router();
 
-const product :Product[]= [];
+const product :Product[] = []; 
 
 Routes.post("/register", (request, response) => {
     const {model, quantity} = request.body;
@@ -14,10 +14,10 @@ Routes.post("/register", (request, response) => {
     Object.assign(addProduct, {
         model,
         quantity,
-        createt_at: new Date()
+        created_at: new Date()
     })
 
-    product.push(addProduct)
+    product.push(addProduct);
 
     console.log(product);
     return response.status(201).send();

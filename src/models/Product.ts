@@ -2,15 +2,15 @@ import {v4} from 'uuid';
 
 class Product {
     id?: string;
+    name: string;
     model: string;
-    quantity: number;
-    created_at: Date;
 
-    constructor() {
+    constructor(){
         if(!this.id){
-            this.id = v4()
+            this.id = v4();
         }
     }
+
 }
 
 export {Product}
