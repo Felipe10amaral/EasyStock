@@ -1,25 +1,15 @@
 import { Router } from "express";
-
-import { Product } from "../models/Product";
+import { ProductRepository } from "../repositories/ProductRepository";
 
 const Routes = Router();
 
-const product :Product[] = []; 
+const productRepository = new ProductRepository();
 
 Routes.post("/register", (request, response) => {
     const {model, quantity} = request.body;
 
-    const addProduct = new Product();
-
-    Object.assign(addProduct, {
-        model,
-        quantity,
-        created_at: new Date()
-    })
-
-    product.push(addProduct);
-
-    console.log(product);
+    productRepository.create({model, quantity});
+    
     return response.status(201).send();
 
 })
