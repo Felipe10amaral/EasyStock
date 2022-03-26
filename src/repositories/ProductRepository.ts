@@ -1,30 +1,36 @@
-import {Product} from '../models/Product';
+import { response } from "express";
+import { Product } from "../models/Product";
 
-interface IProductDTO{
+interface IProduct {
     model: string;
     quantity: number;
+    created_at?: Date;
 }
 
 class ProductRepository {
-
     private product :Product[];
 
-    constructor() {
+    constructor(){
         this.product = [];
     }
 
-    create({model, quantity}: IProductDTO): void{
+    create( {model, quantity}: IProduct): void{
 
         const addProduct = new Product();
-        
+
         Object.assign(addProduct, {
-            model, 
+            model,
             quantity,
             created_at: new Date()
         })
 
         this.product.push(addProduct);
-        console.log(this.product)
+        console.log(this.product);
+
+    }
+
+    list(): Product[]{
+        return this.product;
 
     }
 
