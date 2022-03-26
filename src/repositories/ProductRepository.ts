@@ -34,6 +34,11 @@ class ProductRepository {
 
     }
 
+   findByModel(model: string): Product{
+       const verifyExists = this.product.find((product) => product.model === model);
+       return verifyExists;
+   }
+
 }
 
 export {ProductRepository}

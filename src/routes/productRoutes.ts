@@ -8,6 +8,12 @@ const productRepository = new ProductRepository();
 Routes.post("/register", (request, response) => {
   const {model, quantity} = request.body;
 
+  const verifyModel = productRepository.findByModel(model);
+  
+  if(verifyModel){
+      return response.status(400).json({"error": "Model Exists"});
+  }
+
   productRepository.create({ model, quantity})
 
   return response.status(201).send();
