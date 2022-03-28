@@ -12,8 +12,7 @@ Routes.post("/register", (request, response) => {
 
   const createProductService = new CreateProductService(productRepository);
 
-  createProductService.execute({model, quantity});
-
+  createProductService.execute({model, quantity})
   return response.status(201).send();
 
 })

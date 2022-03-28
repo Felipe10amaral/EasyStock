@@ -10,7 +10,6 @@ class Product{
             this.id = v4();
         }
     }
-
 }
 
 export {Product}

@@ -7,18 +7,18 @@ interface IRequest {
 
 class CreateProductService{
 
-    constructor( private productRepositoryService: ProductRepository){}
+    constructor(private createProductRepository :ProductRepository){}
 
     execute({model, quantity}: IRequest){
 
-        const verifyModel = this.productRepositoryService.findByModel(model);
+        const verifyModel = this.createProductRepository.findByModel(model);
 
         if(verifyModel){
-            throw new Error( "Already Exists")
+            throw new Error("Already Model Exists");
         }
 
-        this.productRepositoryService.create({ model, quantity});
-    }   
+        this.createProductRepository.create({model, quantity});
+    }
 }
 
 export {CreateProductService}

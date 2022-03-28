@@ -1,44 +1,42 @@
-import { response } from "express";
 import { Product } from "../models/Product";
 
-interface IProduct {
+interface IProduct{
     model: string;
     quantity: number;
     created_at?: Date;
 }
 
-class ProductRepository {
+class ProductRepository{
+
     private product :Product[];
 
     constructor(){
         this.product = [];
     }
 
-    create( {model, quantity}: IProduct): void{
+    create({model, quantity}: IProduct){
 
         const addProduct = new Product();
 
-        Object.assign(addProduct, {
+        Object.assign(addProduct,  {
             model,
             quantity,
-            created_at: new Date()
+            create_at: new Date()
         })
 
-        this.product.push(addProduct);
-        console.log(this.product);
+        console.log(addProduct);
 
+        this.product.push(addProduct);
     }
 
     list(): Product[]{
         return this.product;
-
     }
 
-   findByModel(model: string): Product{
-       const verifyExists = this.product.find((product) => product.model === model);
-       return verifyExists;
-   }
-
+    findByModel(model: string) :Product{
+        const verifyModel = this.product.find((product) => product.model === model);
+        return verifyModel;
+    }
 }
 
 export {ProductRepository}
