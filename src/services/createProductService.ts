@@ -1,4 +1,4 @@
-import { ProductRepository } from "../repositories/ProductRepository";
+import { IProductRepository } from "../repositories/IProductRepository";
 
 interface IRequest {
     model: string;
@@ -7,7 +7,7 @@ interface IRequest {
 
 class CreateProductService{
 
-    constructor(private createProductRepository :ProductRepository){}
+    constructor(private createProductRepository :IProductRepository){}
 
     execute({model, quantity}: IRequest){
 

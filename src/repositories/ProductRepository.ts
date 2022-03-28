@@ -1,12 +1,7 @@
 import { Product } from "../models/Product";
+import {IProductDTO, IProductRepository} from './IProductRepository';
 
-interface IProduct{
-    model: string;
-    quantity: number;
-    created_at?: Date;
-}
-
-class ProductRepository{
+class ProductRepository implements IProductRepository{
 
     private product :Product[];
 
@@ -14,7 +9,7 @@ class ProductRepository{
         this.product = [];
     }
 
-    create({model, quantity}: IProduct){
+    create({model, quantity}: IProductDTO){
 
         const addProduct = new Product();
 
