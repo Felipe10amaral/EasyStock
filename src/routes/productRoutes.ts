@@ -10,15 +10,19 @@ const productRepository = new ProductRepository();
 Routes.post("/register", (request, response) => {
   const {model, quantity} = request.body;
 
-  const createProductService = new CreateProductService(productRepository);
+  const productService = new CreateProductService(productRepository);
 
-  createProductService.execute({model, quantity})
+  productService.execute({model, quantity});
+
+  
   return response.status(201).send();
 
 })
 
 Routes.get("/list", (request, response) => {
-    return response.status(200).json(productRepository.list());
+    const all = productRepository.list();
+
+    return response.status(200).json(all);
 })
 
 
