@@ -4,14 +4,12 @@ interface IProductDTO{
     model: string;
     quantity: number;
     created_at?: Date;
-}
+} 
 
 interface IProductRepository{
-
-    create({model: string, quantity :number}: IProductDTO):void;
-    findByModel( model :string):Product;
-    list():Product[];  
-
+    create({model, quantity}: IProductDTO): void;
+    list(): Product[];
+    findByModel(model): Product;
 }
 
-export {IProductRepository, IProductDTO}
+export {IProductDTO, IProductRepository}

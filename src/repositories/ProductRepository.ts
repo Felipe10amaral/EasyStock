@@ -1,5 +1,6 @@
 import { Product } from "../models/Product";
-import {IProductDTO, IProductRepository} from './IProductRepository';
+import { IProductRepository, IProductDTO } from "./IProductRepository";
+
 
 class ProductRepository implements IProductRepository{
 
@@ -9,28 +10,28 @@ class ProductRepository implements IProductRepository{
         this.product = [];
     }
 
-    create({model, quantity}: IProductDTO){
+    create({model, quantity,}: IProductDTO): void{
 
         const addProduct = new Product();
-
-        Object.assign(addProduct,  {
+        Object.assign(addProduct, {
             model,
             quantity,
-            create_at: new Date()
+            created_at: new Date()
         })
 
         console.log(addProduct);
 
-        this.product.push(addProduct);
+        this.product.push(addProduct)
     }
 
     list(): Product[]{
-        return this.product;
+        const listAll = this.product;
+        return listAll;
     }
 
-    findByModel(model: string) :Product{
-        const verifyModel = this.product.find((product) => product.model === model);
-        return verifyModel;
+    findByModel(model: string): Product{
+        const verifyModelExists = this.product.find((product) => product.model === model);
+        return verifyModelExists;
     }
 }
 
