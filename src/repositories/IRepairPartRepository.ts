@@ -1,14 +1,14 @@
 import { RepairPart } from "../models/RepairPart";
 
-interface IRepairDTO{
+interface IRepairPartDTO {
     model: string;
     quantity: number;
 }
 
-interface IRepairPartRepository{
-    create({model, quantity}: IRepairDTO): void;
+interface IRepairPartRepository {
+    create({model, quantity}: IRepairPartDTO): void;
     list(): RepairPart[];
-    findByPart(model: string): RepairPart;
+    findByModel( model: string): RepairPart;
 }
 
-export {IRepairDTO, IRepairPartRepository};
+export {IRepairPartDTO, IRepairPartRepository};

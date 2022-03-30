@@ -1,5 +1,5 @@
 import { RepairPart } from "../models/RepairPart";
-import { IRepairPartRepository, IRepairDTO } from "./IRepairPartRepository";
+import { IRepairPartRepository, IRepairPartDTO } from "./IRepairPartRepository";
 
 
 class RepairPartRepository implements IRepairPartRepository{
@@ -10,7 +10,7 @@ class RepairPartRepository implements IRepairPartRepository{
         this.repairPart = [];
     }
 
-    create({ model, quantity }: IRepairDTO): void {
+    create({ model, quantity }: IRepairPartDTO): void {
         const addRepairPart = new RepairPart();
 
         Object.assign(addRepairPart, {
@@ -21,15 +21,16 @@ class RepairPartRepository implements IRepairPartRepository{
 
         console.log(addRepairPart);
 
-        this.repairPart.push(addRepairPart)
+        this.repairPart.push(addRepairPart);
     }
     list(): RepairPart[] {
         return this.repairPart;
     }
-    findByPart(model: string): RepairPart {
-        const verifyRepairExist = this.repairPart.find( repairPart => repairPart.model === model);
-        return verifyRepairExist;
+    findByModel(model: string): RepairPart {
+        const verifyExistsRepairPart = this.repairPart.find(repairPart => repairPart.model === model);
+        return verifyExistsRepairPart;
     }
+
 }
 
 export {RepairPartRepository}

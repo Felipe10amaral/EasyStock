@@ -1,9 +1,10 @@
 import {v4} from 'uuid';
 
-class RepairPart{
+class RepairPart {
+
     id: string;
     model: string;
-    quantity: number;
+    quantity: string;
     created_at?: Date;
 
     constructor(){

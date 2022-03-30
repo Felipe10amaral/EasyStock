@@ -1,22 +1,23 @@
-import { IRepairPartRepository } from '../repositories/IRepairPartRepository';
+import { IRepairPartRepository } from "../repositories/IRepairPartRepository";
 
-interface IRequest {
-    model: string;
+interface IRequest{
+    model:string;
     quantity: number;
 }
 
 class CreateRepairPartService{
 
-    constructor( private repairtPartRepository :IRepairPartRepository){}
+    constructor( private createRepository :IRepairPartRepository){}
 
     execute({model, quantity}: IRequest){
-        const verifyRepairPart = this.repairtPartRepository.findByPart(model);
 
-        if(verifyRepairPart){
-            throw new Error( "Already Repair Part exists");
+        const verifyModel = this.createRepository.findByModel(model);
+
+        if(verifyModel){
+            throw new Error("Already RepairPart exists");
         }
 
-        this.repairtPartRepository.create({model, quantity});
+        this.createRepository.create({model, quantity});
     }
 }
 
