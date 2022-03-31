@@ -5,8 +5,18 @@ import { IProductDTO, IProductRepository } from "./IProductRepository";
 class ProductRepository implements IProductRepository {
     private product : Product[];
 
-    constructor(){
+    private static INSTANCE :ProductRepository;
+
+    private constructor(){
         this.product = [];
+    }
+
+    public static getInstance(): ProductRepository{
+        if(!ProductRepository.INSTANCE){
+            ProductRepository.INSTANCE = new ProductRepository();
+        }
+
+        return ProductRepository.INSTANCE;
     }
 
     create({ model, quantity }: IProductDTO): void {
