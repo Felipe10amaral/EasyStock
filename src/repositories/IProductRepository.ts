@@ -9,7 +9,7 @@ interface IProductDTO{
 interface IProductRepository{
     create({model, quantity}: IProductDTO): void;
     list(): Product[];
-    findByModel(model): Product;
+    findByModel(model: string): Product;
 }
 
 export {IProductDTO, IProductRepository}
