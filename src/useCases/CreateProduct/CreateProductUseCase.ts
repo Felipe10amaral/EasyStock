@@ -1,18 +1,20 @@
 import { IProductRepository } from "../../repositories/IProductRepository";
 
-interface IRequest {
+interface IRequest{
     model: string;
     quantity: number;
 }
 
-class CreateProductUseCase{
-    constructor( private createRepository : IProductRepository){}
+class CreateProductUseCase {
+
+    constructor(private createRepository : IProductRepository){}
 
     execute({model, quantity}: IRequest){
 
-        const verifyModelExists = this.createRepository.findByModel(model);
-        if(verifyModelExists){
-            throw new Error("Already Model Exists");
+        const verifyModel = this.createRepository.findByModel(model);
+
+        if(verifyModel){
+            throw new Error(" Already Exists Model");
         }
 
         this.createRepository.create({model, quantity});
