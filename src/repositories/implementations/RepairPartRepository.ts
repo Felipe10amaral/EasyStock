@@ -6,9 +6,20 @@ class RepairPartRepository implements IRepairPartRepository{
 
     private repairPart :RepairPart[];
 
-    constructor(){
+    private static INSTANCE :RepairPartRepository;
+
+    private constructor(){
         this.repairPart = [];
     }
+
+    public static getInstance(): RepairPartRepository{
+        if(!RepairPartRepository.INSTANCE){
+            RepairPartRepository.INSTANCE = new RepairPartRepository();
+        }
+
+        return RepairPartRepository.INSTANCE;
+    }
+
 
     create({ model, quantity }: IRepairPartDTO): void {
         const addRepairPart = new RepairPart();

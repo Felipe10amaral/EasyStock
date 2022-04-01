@@ -1,25 +1,17 @@
 import { Router } from 'express';
-import { RepairPartRepository } from '../repositories/implementations/RepairPartRepository';
-import { CreateRepairPartService } from '../services/createRepairPartService';
+import { createControllerRepairPart } from '../useCases/CreateRepairPart';
+import { listRepairPartController } from '../useCases/listRepairPart';
 
 const RepairPartRoutes = Router();
 
-const repositoryPartRepair = new RepairPartRepository();
 
 RepairPartRoutes.post("/repair-part", (request, response) => {
-    const {model, quantity} = request.body;
-
-    const createServiceRepairPart = new CreateRepairPartService(repositoryPartRepair);
-
-    createServiceRepairPart.execute({model, quantity});
-
-    return response.status(201).send();
-
+    return createControllerRepairPart.handle(request, response);
 });
 
 RepairPartRoutes.get("/repair-part", (request, response) => {
-    const all = repositoryPartRepair.list();
-    return response.json(all);
+    return listRepairPartController.handle(request, response);
+    
 })
 
 export { RepairPartRoutes};

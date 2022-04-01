@@ -1,11 +1,11 @@
-import { IRepairPartRepository } from "../repositories/IRepairPartRepository";
+import { IRepairPartRepository } from "../../repositories/IRepairPartRepository";
 
 interface IRequest{
     model:string;
     quantity: number;
 }
 
-class CreateRepairPartService{
+class CreateRepairPartUseCase{
 
     constructor( private createRepository :IRepairPartRepository){}
 
@@ -21,4 +21,4 @@ class CreateRepairPartService{
     }
 }
 
-export {CreateRepairPartService}
+export {CreateRepairPartUseCase}
