@@ -1,5 +1,5 @@
-import { Product } from "../models/Product";
-import { IProductDTO, IProductRepository } from "./IProductRepository";
+import { Product } from "../../models/Product";
+import { IProductDTO, IProductRepository } from "../IProductRepository";
 
     
 class ProductRepository implements IProductRepository {
@@ -27,8 +27,6 @@ class ProductRepository implements IProductRepository {
             quantity,
             created_at: new Date()
         })
-
-        console.log(addProduct);
 
         this.product.push(addProduct);
     }

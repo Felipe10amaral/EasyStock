@@ -1,5 +1,5 @@
-import { RepairPart } from "../models/RepairPart";
-import { IRepairPartRepository, IRepairPartDTO } from "./IRepairPartRepository";
+import { RepairPart } from "../../models/RepairPart";
+import { IRepairPartRepository, IRepairPartDTO } from "../IRepairPartRepository";
 
 
 class RepairPartRepository implements IRepairPartRepository{
@@ -18,8 +18,6 @@ class RepairPartRepository implements IRepairPartRepository{
             quantity,
             created_at: new Date()
         })
-
-        console.log(addRepairPart);
 
         this.repairPart.push(addRepairPart);
     }

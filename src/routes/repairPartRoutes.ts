@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { RepairPartRepository } from '../repositories/RepairPartRepository';
+import { RepairPartRepository } from '../repositories/implementations/RepairPartRepository';
 import { CreateRepairPartService } from '../services/createRepairPartService';
 
 const RepairPartRoutes = Router();
