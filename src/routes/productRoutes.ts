@@ -3,6 +3,7 @@ import multer from 'multer';
 
 import { listController } from "../useCases/listProduct";
 import { createProductController } from "../useCases/CreateProduct/index";
+import { importProductController } from "../useCases/importProductUseCase";
 
 const productRoutes = Router();
 
@@ -20,11 +21,8 @@ productRoutes.get("/", (request, response) => {
 })
 
 productRoutes.post("/import", upload.single("file") ,(request, response) => {
-  const {file} = request;
-  console.log(file);
-  return response.status(200).send();
+  return importProductController.handle(request, response);
 })
-
 
 
 export {productRoutes}
