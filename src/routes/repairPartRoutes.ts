@@ -5,11 +5,11 @@ import { listRepairPartController } from '../useCases/listRepairPart';
 const RepairPartRoutes = Router();
 
 
-RepairPartRoutes.post("/repair-part", (request, response) => {
+RepairPartRoutes.post("/", (request, response) => {
     return createControllerRepairPart.handle(request, response);
 });
 
-RepairPartRoutes.get("/repair-part", (request, response) => {
+RepairPartRoutes.get("/", (request, response) => {
     return listRepairPartController.handle(request, response);
     
 })

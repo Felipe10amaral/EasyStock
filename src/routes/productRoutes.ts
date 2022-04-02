@@ -3,17 +3,17 @@ import { listController } from "../useCases/listProduct";
 import { createProductController } from "../useCases/CreateProduct/index";
 
 
-const Routes = Router();
+const productRoutes = Router();
 
 
-Routes.post("/register", (request, response) => {
+productRoutes.post("/", (request, response) => {
   return createProductController.handle(request, response);
 
 })
 
-Routes.get("/list", (request, response) => {
+productRoutes.get("/", (request, response) => {
   return listController.handle(request, response);
 })
 
 
-export {Routes}
+export {productRoutes}
