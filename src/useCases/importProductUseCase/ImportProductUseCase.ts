@@ -1,18 +1,44 @@
 import fs from 'fs';
-import {parse} from 'csv-parse';
+import { parse } from 'csv-parse';
+import { IProductRepository } from '../../repositories/IProductRepository';
 
-class ImportProductUseCase{
-    execute( file: Express.Multer.File ): void{
-        const stream = fs.createReadStream(file.path);
-
-        const parseFile = parse();
-
-        stream.pipe(parseFile);
-        
-        parseFile.on("data", async (line) => {
-            console.log(line);
-        })
-    }
+interface IImportProduct{
+    model: string;
+    quantity: number;
 }
 
+class ImportProductUseCase{
+    constructor( private productRepository: IProductRepository){}
+
+    loadProduct(file: Express.Multer.File): Promise<IImportProduct[]>{
+        return new Promise((resolve, reject) => {
+            const stream = fs.createReadStream(file.path);
+            const addProduct: IImportProduct[] = [];
+
+            const parseFile = parse();
+            stream.pipe(parseFile);
+
+            parseFile.on("data", async (line) => {
+                const [model, quantity] = line;
+
+                addProduct.push({
+                    model,
+                    quantity
+                })
+            })
+            .on("end", () => {
+                resolve(addProduct);
+            })
+            .on("error", (err) => {
+                reject(err);
+            })
+        })
+    }
+
+    async execute(file: Express.Multer.File){
+        const fileProduct = await this.loadProduct(file);
+        console.log(fileProduct); 
+    }
+}
+    
 export{ ImportProductUseCase }
