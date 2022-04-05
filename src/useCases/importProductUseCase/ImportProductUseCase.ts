@@ -37,7 +37,18 @@ class ImportProductUseCase{
 
     async execute(file: Express.Multer.File){
         const fileProduct = await this.loadProduct(file);
-        console.log(fileProduct); 
+        
+        fileProduct.map( async (product) => {
+            const {model, quantity} = product;
+
+            const ExistsModel = this.productRepository.findByModel(model);
+             if(!ExistsModel){
+                 this.productRepository.create({
+                     model,
+                     quantity
+                 })
+             }
+        })
     }
 }
     
