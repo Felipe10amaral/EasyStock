@@ -1,11 +1,13 @@
 {
     "type": "postgres",
-    "port": 5433,
-    "host": "localhost",
+    "port": 5432,
+    "host": "localhost", 
     "username": "docker",
-    "password": "bdeasystock",
-    "database": "easystock",
+    "password": "dbstock",
+    "database": "easystock", 
     "migrations": ["./src/database/migrations/*.ts"],
-    "entities": ["./src/modules/**/entities/*.ts"]
-    
-}
+    "entities": ["./src/modules/**/entities/*.ts"],
+    "cli": {
+      "migrationsDir": "./src/database/migrations"
+    }
+  }
