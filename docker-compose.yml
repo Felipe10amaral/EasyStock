@@ -1,6 +1,19 @@
-version: "3.7"
+version: "3.9"
 
 services:
+  database:
+    image: postgres
+    container_name: database_easystock
+    restart: always
+    ports:
+      - 5433:5433
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=bdeasystock
+      - POSTGRES_DB=easystock
+    volumes:
+      - pgdata:/data/postgres
+    
   app:
     build: .
     container_name: easystock
@@ -8,3 +21,13 @@ services:
       - 3334:3334
     volumes:
       - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+    
+
+
+volumes:
+  pgdata:
+    driver: local

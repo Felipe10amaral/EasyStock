@@ -1,7 +1,11 @@
 {
     "type": "postgres",
+    "port": 5433,
     "host": "localhost",
-    "username": "",
-    "password": "",
-    "database": "easystock"
+    "username": "docker",
+    "password": "bdeasystock",
+    "database": "easystock",
+    "migrations": ["./src/database/migrations/*.ts"],
+    "entities": ["./src/modules/**/entities/*.ts"]
+    
 }
