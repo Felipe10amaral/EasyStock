@@ -8,17 +8,10 @@ class ProductRepository implements IProductRepository {
 
     private static INSTANCE :ProductRepository;
 
-    private constructor(){
+    constructor(){
         this.repository = getRepository(Product);
     }
 
-    public static getInstance(): ProductRepository{
-        if(!ProductRepository.INSTANCE){
-            ProductRepository.INSTANCE = new ProductRepository();
-        }
-
-        return ProductRepository.INSTANCE;
-    }
 
     async create({ model, quantity }: IProductDTO): Promise<void> {
         const product = this.repository.create({

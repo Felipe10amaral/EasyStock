@@ -3,7 +3,7 @@ import { ListProductController } from "./ListProductController";
 import { ListProductUseCase } from "./ListProductUseCase";
 
 
-const listRepository = ProductRepository.getInstance();
+const listRepository = null;
 const listUseCase = new ListProductUseCase(listRepository);
 const listController = new ListProductController(listUseCase);
 

@@ -2,8 +2,11 @@ import { ProductRepository } from "../../repositories/implementations/ProductRep
 import { CreateProductController } from "./CreateProductController";
 import { CreateProductUseCase } from "./CreateProductUseCase";
 
-const createProductRepository = ProductRepository.getInstance();
-const createProductUseCase = new CreateProductUseCase(createProductRepository);
-const createProductController = new CreateProductController(createProductUseCase);
+export default (): CreateProductController => {
+    const createProductRepository = new ProductRepository();
+    const createProductUseCase = new CreateProductUseCase(createProductRepository);
+    const createProductController = new CreateProductController(createProductUseCase);
 
-export {createProductController};
+
+    return createProductController;
+}

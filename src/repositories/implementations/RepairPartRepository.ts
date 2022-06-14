@@ -1,4 +1,4 @@
-import { RepairPart } from "../../models/RepairPart";
+import { RepairPart } from "../../entities/RepairPart";
 import { IRepairPartRepository, IRepairPartDTO } from "../IRepairPartRepository";
 
 
