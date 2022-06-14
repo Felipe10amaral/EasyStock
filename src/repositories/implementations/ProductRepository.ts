@@ -1,14 +1,15 @@
-import { Product } from "../../models/Product";
+import { getRepository, Repository } from "typeorm";
+import { Product } from "../../entities/Product";
 import { IProductDTO, IProductRepository } from "../IProductRepository";
 
     
 class ProductRepository implements IProductRepository {
-    private product : Product[];
+    private repository : Repository<Product>;
 
     private static INSTANCE :ProductRepository;
 
     private constructor(){
-        this.product = [];
+        this.repository = getRepository(Product);
     }
 
     public static getInstance(): ProductRepository{
@@ -19,23 +20,21 @@ class ProductRepository implements IProductRepository {
         return ProductRepository.INSTANCE;
     }
 
-    create({ model, quantity }: IProductDTO): void {
-        const addProduct = new Product();
-
-        Object.assign(addProduct, {
+    async create({ model, quantity }: IProductDTO): Promise<void> {
+        const product = this.repository.create({
             model,
-            quantity,
-            created_at: new Date()
-        })
+            quantity
+        });
 
-        this.product.push(addProduct);
+        await this.repository.save(product);
+       
     }
-    findByModel(model: string): Product {
-        const verifyModelExists = this.product.find( product => product.model === model);
+    async findByModel(model: string): Promise<Product> {
+        const verifyModelExists = await this.repository.findOne({model});
         return verifyModelExists;
     }
-    list(): Product[] {
-        const all = this.product;
+    async list(): Promise<Product[]> {
+        const all = await this.repository.find();
         return all;
     }
 }

@@ -1,4 +1,4 @@
-import {Product} from '../models/Product';
+import {Product} from '../entities/Product';
 
 interface IProductDTO {
     model: string;
@@ -6,9 +6,9 @@ interface IProductDTO {
 }
 
 interface IProductRepository{
-    create({model, quantity}: IProductDTO): void;
-    findByModel(model: string): Product;
-    list(): Product[];
+    create({model, quantity}: IProductDTO): Promise<void>;
+    findByModel(model: string): Promise<Product>;
+    list(): Promise<Product[]>;
 }
 
 export {IProductDTO, IProductRepository};
