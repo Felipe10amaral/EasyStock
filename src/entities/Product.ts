@@ -11,7 +11,7 @@ class Product{
     model: string;
     
     @Column()
-    quantity: number;
+    quantity: string;
 
     constructor(){
         if(!this.id){

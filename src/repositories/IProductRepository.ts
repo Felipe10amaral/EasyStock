@@ -2,7 +2,7 @@ import {Product} from '../entities/Product';
 
 interface IProductDTO {
     model: string;
-    quantity: number;
+    quantity: string;
 }
 
 interface IProductRepository{
