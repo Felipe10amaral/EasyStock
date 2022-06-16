@@ -5,9 +5,9 @@ class CreateProductController {
 
     constructor( private createUseCase: CreateProductUseCase){}
 
-    handle(request: Request, response: Response): Response{
+    async handle(request: Request, response: Response): Promise<Response>{
         const {model, quantity} = request.body;
-        this.createUseCase.execute({model, quantity});
+        await this.createUseCase.execute({model, quantity});
         return response.status(201).send();
     }
 }

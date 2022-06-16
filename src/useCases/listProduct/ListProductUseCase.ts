@@ -6,7 +6,7 @@ class ListProductUseCase {
 
     constructor( private productRepository :IProductRepository ){}
 
-    execute(): Product[]{
+    execute(){
         const AllProduct = this.productRepository.list();
         return AllProduct;
     }    

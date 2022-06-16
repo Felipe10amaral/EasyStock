@@ -9,9 +9,9 @@ class CreateProductUseCase {
 
     constructor(private createRepository : IProductRepository){}
 
-    execute({model, quantity}: IRequest){
+    async execute({model, quantity}: IRequest): Promise<void>{
 
-        const verifyModel = this.createRepository.findByModel(model);
+        const verifyModel = await this.createRepository.findByModel(model);
 
         if(verifyModel){
             throw new Error(" Already Exists Model");

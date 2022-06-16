@@ -6,8 +6,6 @@ import { IProductDTO, IProductRepository } from "../IProductRepository";
 class ProductRepository implements IProductRepository {
     private repository : Repository<Product>;
 
-    private static INSTANCE :ProductRepository;
-
     constructor(){
         this.repository = getRepository(Product);
     }
@@ -16,8 +14,8 @@ class ProductRepository implements IProductRepository {
     async create({ model, quantity }: IProductDTO): Promise<void> {
         const product = this.repository.create({
             model,
-            quantity
-        });
+            quantity            
+        })
 
         await this.repository.save(product);
        
